@@ -33,10 +33,17 @@ namespace Project.Admin.Role
 
 		public async Task<IActionResult> OnGet(string roleid)
 		{
-			if(roleid == null) return NotFound("Không tìm thấy role");
+			if (roleid == null)
+			{
 
-			 role = await _roleManager.FindByIdAsync(roleid);
+				return NotFound("Không tìm thấy role");
 
+			}
+			else
+			{
+
+				role = await _roleManager.FindByIdAsync(roleid);
+			}
 			if(role != null)
 			{
 				Input = new InputModel
@@ -53,7 +60,6 @@ namespace Project.Admin.Role
             if (roleid == null) return NotFound("Không tìm thấy role");
 
              role = await _roleManager.FindByIdAsync(roleid);
-            if (roleid == null) return NotFound("Không tìm thấy role");
 
 
             if (!ModelState.IsValid)

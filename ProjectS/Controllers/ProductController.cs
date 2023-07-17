@@ -48,7 +48,6 @@ namespace Project.Controllers
             ViewData["gender"] = gender;
             ViewData["listSubCate"] = subCategories;
             ViewData["subCate"] = subCate;
-            ViewData["gender"] = gender;
 
             if (ViewData.ContainsKey("gender"))
             {

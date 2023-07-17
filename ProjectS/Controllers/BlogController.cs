@@ -201,21 +201,6 @@ namespace Project.Controllers
 
             return View(img);
         }
-
-        [HttpPost]
-        public IActionResult CreateImage2(IFormFile ImageUrl, ImageBlog imageBlog)
-        {
-            var UrlImage = _cloudinaryService.UploadImage(ImageUrl, "ImageBlog");
-
-            imageBlog.ImageURL = UrlImage;
-
-            _context.ImageBlogs.Add(imageBlog);
-            _context.SaveChanges();
-
-            return Redirect($"UpdateImage?id={imageBlog.BlogId}");
-
-        }
-
         [HttpPost]
         public async Task<IActionResult> UpdateImage(int ImageId, int BlogId, string ImageUrl, bool IsBigImg, DateTime DateUp, [FromForm] IFormFile NewImageUrl, int FormId)
         {
@@ -250,6 +235,22 @@ namespace Project.Controllers
 
             return RedirectToAction("ViewBlog");
         }
+
+        [HttpPost]
+        public IActionResult CreateImage2(IFormFile ImageUrl, ImageBlog imageBlog)
+        {
+            var UrlImage = _cloudinaryService.UploadImage(ImageUrl, "ImageBlog");
+
+            imageBlog.ImageURL = UrlImage;
+
+            _context.ImageBlogs.Add(imageBlog);
+            _context.SaveChanges();
+
+            return Redirect($"UpdateImage?id={imageBlog.BlogId}");
+
+        }
+
+       
 
 
 

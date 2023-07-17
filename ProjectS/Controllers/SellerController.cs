@@ -117,9 +117,9 @@ namespace Project.Controllers
                                         </ul>
                                     </body>
                                     </html>";
-				string gmail = "huongdl40@gmail.com";
-				string password = "gepcdegcpjjzceke";
-				var sendResult = SendMailConfirmOrder.SendGmail(fromEmail, toEmail, subject, body, gmail, password).GetAwaiter().GetResult();
+                string gmail = Environment.GetEnvironmentVariable("GMAIL"); 
+				string password = Environment.GetEnvironmentVariable("PASSWORD");
+                var sendResult = SendMailConfirmOrder.SendGmail(fromEmail, toEmail, subject, body, gmail, password).GetAwaiter().GetResult();
 				if (sendResult == "gui email thanh cong")
 				{
 					// Xóa tất cả các đối tượng BillDetail liên quan

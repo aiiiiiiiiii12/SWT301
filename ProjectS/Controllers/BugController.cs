@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Project.Data;
 
 namespace Project.Controllers
 {
@@ -40,12 +41,17 @@ namespace Project.Controllers
 
         }
 
+        public string GetInputFromUser(){
+            return "";
+}
         public IActionResult Bug2()
         {
-            string username = GetInputFromUser(); // Đầu vào từ người dùng
+            string username = GetInputFromUser(); 
 
-            string query = "SELECT * FROM Users WHERE Username = '" + username + "'";
-            SqlCommand command = new SqlCommand(query, connection);
+            string query = "SELECT * FROM Users WHERE Username = @Username";
+            SqlCommand command = new SqlCommand(query, ShopContext);
+            command.Parameters.AddWithValue("@Username", username);
+
 
             return View();
         }
@@ -77,11 +83,11 @@ namespace Project.Controllers
             }
         }
 
-        // Gọi phương thức đệ quy với độ sâu giới hạn
+       
 
         public static void RecursiveMethod()
         {
-            RecursiveMethod(1000); // Không gây ra lỗi StackOverflowException
+            RecursiveMethod(1000); 
         }
 
         public IActionResult Bug5()

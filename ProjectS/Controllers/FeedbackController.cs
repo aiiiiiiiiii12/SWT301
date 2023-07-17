@@ -31,7 +31,7 @@ namespace Project.Controllers
                 return NotFound();
             }
 
-            var billDetail = bill.BillDetails.FirstOrDefault(bd => bd.ProductId == productId);
+            var billDetail = bill.BillDetails.Find(bd => bd.ProductId == productId);
             if (billDetail != null && !billDetail.IsFeedbackSubmitted)
             {
                 

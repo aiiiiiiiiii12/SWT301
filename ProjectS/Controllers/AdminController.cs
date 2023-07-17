@@ -284,7 +284,17 @@ namespace Project.Controllers
         public IActionResult DelDetailProduct(int productDetailId)
         {
             var detailProd = _shopContext.productdetails.FirstOrDefault(x => x.productDetailId == productDetailId);
-            int prodId = detailProd.productId;
+            int prodId=0;
+            if (detailProd == null)
+            {
+
+                return NotFound();
+            }
+            else
+            {
+                prodId = detailProd.productId;
+
+            }
             _shopContext.Remove(detailProd);
             _shopContext.SaveChanges();
             TempData["mess"] = " delete sucessfully";
