@@ -23,7 +23,6 @@ namespace Project.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly ShopContext _shopContext;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger,

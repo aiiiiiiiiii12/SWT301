@@ -196,10 +196,10 @@ namespace Project.Controllers
                     </ul>
                 </body>
                 </html>";
-					string gmail = "huongdl40@gmail.com";
-					string password = "gepcdegcpjjzceke";
+                    string gmail = Environment.GetEnvironmentVariable("GMAIL");
+                    string password = Environment.GetEnvironmentVariable("PASSWORD");
 
-					var sendResult = SendMailConfirmOrder.SendGmail(fromEmail, toEmail, subject, body, gmail, password).GetAwaiter().GetResult();
+                    var sendResult = SendMailConfirmOrder.SendGmail(fromEmail, toEmail, subject, body, gmail, password).GetAwaiter().GetResult();
 					if (sendResult != "gui email thanh cong")
 					{
 						// Handle email sending failure

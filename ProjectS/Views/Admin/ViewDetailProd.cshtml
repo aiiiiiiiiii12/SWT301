@@ -49,6 +49,8 @@
 
                                 <div class="card-body">
                                     <table class="table">
+                                        <caption>Add a description to this table.</caption>
+
                                         <thead>
                                             <tr>
                                                 <th scope="col">id</th>
@@ -123,7 +125,7 @@
                                             {
                                                 <tr>
                                                     <th scope="row">@a.ImageProductId</th>
-                                                    <td><img src="@a.ImageURL" style="max-width: 50px"></td>
+                                                    <td><img src="@a.ImageURL" alt="Image" style="max-width: 50px"></td>
                                                     <td>
                                                         <a href="/admin/DelImageProduct?ImageProductId=@a.ImageProductId" class="btn btn-danger" onclick="check(event)">
                                                             <i class="icon-close"></i>
@@ -168,7 +170,7 @@
                     </div>
                     <div class="product-image border-bottom">
                         <img class="d-sm-block align-center"
-                             src="@Model.ImageMain" width="300" height="300" style="margin: auto;">
+                             src="@Model.ImageMain" width="300" height="300" style="margin: auto;" alt="Image">
                     </div>
                     <div class="product- border-bottom">
                         <h3 class="mb-0 text-danger">Discount @Model.Discount%</h3>

@@ -51,7 +51,7 @@
 <hr />
 @foreach(var l in Model.ImageBlogs)
 {
-    <img src="@l.ImageURL" style="width: 200px; height: 150px">
+    <img src="@l.ImageURL" style="width: 200px; height: 150px" alt="image">
 }
 <hr />
 <form action="/Blog/CreateImage" method="post" enctype="multipart/form-data">

@@ -323,7 +323,11 @@ namespace Project.Controllers
         public IActionResult DelImageProduct(int ImageProductId)
         {
             ImageProduct img = _shopContext.ImageProducts.FirstOrDefault(x => x.ImageProductId == ImageProductId);
-            int prodId = img.ProductId;
+            int prodId = 0;
+            if (img != null)
+            {
+                prodId = img.ProductId;
+            }
             _shopContext.Remove(img);
             _shopContext.SaveChanges();
 
