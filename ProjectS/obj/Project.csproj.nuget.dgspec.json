@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\SWP\\ProjectS\\Project.csproj": {}
+    "C:\\Trycode\\SWP\\ProjectS\\SWT301\\ProjectS\\Project.csproj": {}
   },
   "projects": {
-    "E:\\SWP\\ProjectS\\Project.csproj": {
+    "C:\\Trycode\\SWP\\ProjectS\\SWT301\\ProjectS\\Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\SWP\\ProjectS\\Project.csproj",
+        "projectUniqueName": "C:\\Trycode\\SWP\\ProjectS\\SWT301\\ProjectS\\Project.csproj",
         "projectName": "Project",
-        "projectPath": "E:\\SWP\\ProjectS\\Project.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "E:\\SWP\\ProjectS\\obj\\",
+        "projectPath": "C:\\Trycode\\SWP\\ProjectS\\SWT301\\ProjectS\\Project.csproj",
+        "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
+        "outputPath": "C:\\Trycode\\SWP\\ProjectS\\SWT301\\ProjectS\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -23,7 +23,8 @@
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://www.nuget.org/api/v2": {}
         },
         "frameworks": {
           "net6.0": {
