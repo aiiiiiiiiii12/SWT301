@@ -21,7 +21,6 @@ namespace Project.Admin.User
 	public class AddRoleModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
 
         private readonly RoleManager<IdentityRole> _roleManager;
         public AddRoleModel(
@@ -30,7 +29,6 @@ namespace Project.Admin.User
             RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _roleManager = roleManager;
         }
 

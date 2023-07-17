@@ -72,6 +72,7 @@ namespace Project.Controllers
                                 var option = new CookieOptions()
                                 {
                                     Expires = DateTime.Now.AddDays(90)
+                                    Secure = Request.IsHttps
                                 };
                                 Response.Cookies.Append("cart", json, option);
                             }

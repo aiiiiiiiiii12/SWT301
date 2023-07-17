@@ -108,7 +108,6 @@ namespace Project.Areas.Identity.Pages.Account
 
             var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, Input.RememberMachine);
 
-            var userId = await _userManager.GetUserIdAsync(user);
 
             if (result.Succeeded)
             {

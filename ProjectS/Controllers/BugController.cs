@@ -68,16 +68,20 @@ namespace Project.Controllers
             return View();
         }
 
-      
-        public IActionResult Bug4()
+
+        public static void RecursiveMethod(int depth)
         {
-            
-            RecursiveMethod(); 
-            return View();
+            if (depth > 0)
+            {
+                RecursiveMethod(depth - 1);
+            }
         }
+
+        // Gọi phương thức đệ quy với độ sâu giới hạn
+
         public static void RecursiveMethod()
         {
-            RecursiveMethod();
+            RecursiveMethod(1000); // Không gây ra lỗi StackOverflowException
         }
 
         public IActionResult Bug5()

@@ -32,10 +32,7 @@ namespace Project.Data
         public virtual DbSet<Comment> Comment { get; set; } = null!;
         public DbSet<Answer> Answer { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

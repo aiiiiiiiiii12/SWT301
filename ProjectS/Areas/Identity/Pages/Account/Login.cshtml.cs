@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Project.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Project.Areas.Identity.Pages.Account
 {
@@ -110,55 +111,59 @@ namespace Project.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
-
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             if (ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-
-                    var x = _shopContext.Roles.Where(p => p.Name.Equals("Admin") || p.Name.Equals("Marketing") || p.Name.Equals("Seller")).Select(p => p.Id).ToList();
-                    if (x.Count > 0)
-                    {
-                        var n = _shopContext.Users.Where(p => p.Email == Input.Email).Select(p => p.Id).ToList();
-                        if (n.Count > 0)
-                        {
-                            var t = _shopContext.UserRoles.Where(p => p.UserId.Equals(n[0])).Where(p => x.Contains(p.RoleId)).ToList();
-                            Console.WriteLine(t.Count);
-                            if (t.Count > 0)
-                            {
-                                return Redirect("/Admin/Index");
-                            }
-                        }
-                    }
-
-                    return LocalRedirect(returnUrl);
-
-
+                    return await HandleSuccessfulLogin(returnUrl);
                 }
-                if (result.RequiresTwoFactor)
+                else if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
-                if (result.IsLockedOut)
+                else if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
+                    return HandleInvalidLoginAttempt();
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
+
+        private async Task<IActionResult> HandleSuccessfulLogin(string returnUrl)
+        {
+            _logger.LogInformation("User logged in.");
+
+            var allowedRoles = new List<string> { "Admin", "Marketing", "Seller" };
+            var user = await _shopContext.Users.FirstOrDefaultAsync(p => p.Email == Input.Email);
+
+            if (user != null)
+            {
+                var userRoleIds = await _shopContext.UserRoles.Where(p => p.UserId.Equals(user.Id)).Select(p => p.RoleId).ToListAsync();
+                var matchingRoles = userRoleIds.Intersect(_shopContext.Roles.Where(p => allowedRoles.Contains(p.Name)).Select(p => p.Id));
+
+                if (matchingRoles.Any())
+                {
+                    return Redirect("/Admin/Index");
+                }
+            }
+
+            return LocalRedirect(returnUrl);
+        }
+
+        private IActionResult HandleInvalidLoginAttempt()
+        {
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            return Page();
+        }
+
     }
 }

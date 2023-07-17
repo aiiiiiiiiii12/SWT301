@@ -19,12 +19,7 @@ namespace Project.Admin.User
 		}
 		public List<UserAndRole> users { get; set; }
 
-		//public const int ITEMS_PER_PAGE = 10;
-		//[BindProperty(SupportsGet =true,Name ="p")]
-		//public int currentPage { get;set; }
-
-		//public int countPages { get; set; }
-
+		
 
 		[TempData]
 		public string StatusMessage { get; set; }
@@ -50,19 +45,7 @@ namespace Project.Admin.User
 				user.RoleNames =  string.Join(",", roles);
 			}
 
-			//var qr = _userManager.Users.OrderBy(u => u.UserName);
-
-			//int totalUsers = await qr.CountAsync();
-			//countPages = (int)Math.Ceiling((double)totalUsers / ITEMS_PER_PAGE);
-			//if(currentPage<1)
-			//	currentPage = 1;
-			//if(currentPage>countPages)
-			//	currentPage=countPages;
-
-			//var qr1 = qr.Skip((currentPage-1)*ITEMS_PER_PAGE)
-			//	.Take(ITEMS_PER_PAGE);
-
-			//users = await qr1.ToListAsync();
+		
 
 		}
 

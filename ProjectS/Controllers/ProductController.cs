@@ -50,6 +50,19 @@ namespace Project.Controllers
             ViewData["subCate"] = subCate;
             ViewData["gender"] = gender;
 
+            if (ViewData.ContainsKey("gender"))
+            {
+
+                ViewData.Remove("gender");
+
+            }
+            else
+            {
+
+                ViewData["gender"] = gender;
+
+            }
+
             if (mode == 1)
             {
                 list.Sort((x, y) => (x.ProductPrice - x.Discount).CompareTo(y.ProductPrice - y.Discount));
@@ -113,7 +126,7 @@ namespace Project.Controllers
             if (string.IsNullOrEmpty(name))
                 return View(null);
 
-            _logger.LogError(_shopContext.Products.Where(c => c.ProductName.Contains(name)).ToList().Count() + "");
+            _logger.LogError(_shopContext.Products.Where(c => c.ProductName.Contains(name)).AsEnumerable().Count() + "");
 
             return View("Index", _shopContext.Products.Where(c => c.ProductName.Contains(name)).ToList());
         }

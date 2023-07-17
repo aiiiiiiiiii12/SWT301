@@ -35,15 +35,25 @@ namespace Project.Admin.Role
 
 		public async Task<IActionResult> OnPostAsync(string roleid)
 		{
-            if (roleid == null) return NotFound("Không tìm thấy role");
+            if (roleid == null)
+            {
 
-            role = await _roleManager.FindByIdAsync(roleid);
-            if (roleid == null) return NotFound("Không tìm thấy role");
+                return NotFound("Không tìm thấy role");
+
+            }
+            else
+            {
+
+                role = await _roleManager.FindByIdAsync(roleid);
+
+                if (role == null)
+
+                { return NotFound("Không tìm thấy role"); }
 
 
-            
-		
-			var result=await _roleManager.DeleteAsync(role);
+
+
+                var result=await _roleManager.DeleteAsync(role);
 
 
 
